@@ -1,6 +1,9 @@
-import { memo, useContext } from "react";
+// import { memo, useContext } from "react";
+import { memo } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { UserContext } from "../../providers/UserProvider";
+// import { UserContext } from "../../providers/UserProvider";
+import { userState } from "../../store/userState";
 import { SecondaryButton } from "../atoms/button/SecondaryButton";
 
 import { SearchInput } from "../molecules/SearchInput";
@@ -21,7 +24,9 @@ const users = [...Array(10).keys()].map((val) => {
 });
 
 export const Users = memo(() => {
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  // const { userInfo, setUserInfo } = useContext(UserContext);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+
   const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo });
   return (
     <SContainer>
